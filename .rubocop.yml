@@ -230,7 +230,10 @@ Style/CommandLiteral:
   EnforcedStyle: percent_x
 
 Style/ConstantVisibility:
-  Enabled: true
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -252,6 +255,9 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: false
 
 Style/ImplicitRuntimeError:
   Enabled: true
@@ -288,6 +294,9 @@ Style/RedundantFetchBlock:
 
 Style/RedundantFileExtensionInRequire:
   Enabled: true
+
+Style/RedundantFreeze:
+  Enabled: false
 
 Style/RedundantSelfAssignment:
   Enabled: true
