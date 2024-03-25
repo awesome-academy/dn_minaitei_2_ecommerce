@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.shared_context("with a logged-in with admin") do |method, action|
-  let!(:admin_login) { create(:account, role: Account.roles[:admin]) }
+  let!(:admin) { create(:account, role: Account.roles[:admin]) }
 
   before do
-    log_in(admin_login)
+    sign_in(admin)
     @initial_count = Product.count
     perform_action(method, action)
   end
 
   it "logged successfully" do
-    expect(logged_in?).to(eq(true))
+    result = controller.send(:account_signed_in?)
+    expect(result).to(eq(true))
   end
 
   it "is admin" do
-    expect(current_account.admin?).to(eq(true))
+    result = controller.send(:current_account)
+
+    expect(result.admin?).to(eq(true))
   end
 end

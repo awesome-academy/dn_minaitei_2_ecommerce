@@ -1,8 +1,8 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
 
 #error_explanation {
-  color: red
+  color: red;
 }
 
 #admin_error_explanation {
@@ -38,19 +38,17 @@
     padding: 0px 50px 0px 50px;
     background-color: #fff;
     font-weight: bold;
-
   }
 }
 
-
 .form-btn-back:hover {
-  transition: ease .5s;
+  transition: ease 0.5s;
   background-color: #fff;
   color: black;
 }
 
 .form-btn-submit:hover {
-  transition: ease .5s;
+  transition: ease 0.5s;
   background-color: #f4291a;
   color: #fff;
 }
@@ -66,11 +64,10 @@
   border: 3px solid #f4291a;
   text-decoration: none !important;
   font-weight: bold;
-
 }
 
 .btn-redirect:hover {
-  transition: ease .5s;
+  transition: ease 0.5s;
   background-color: #f4291a;
   color: #fff;
 }
@@ -90,37 +87,35 @@
     padding: 10px 30px 10px 30px;
     width: 80%;
     border-radius: 10px;
-
   }
 
-  .nav-selection+.nav-selection {
+  .nav-selection + .nav-selection {
     margin-top: 15px;
   }
 
   .nav-selection:hover {
     background-color: #000 !important;
     color: yellow;
-    transition: ease .5s;
+    transition: ease 0.5s;
   }
 
   .nav-selection.active {
     background-color: blue !important;
-
   }
 
   .sizing-table-first-column {
     max-width: 100px;
-    min-width: 100px
+    min-width: 100px;
   }
 
   .sizing-table {
     max-width: 150px;
-    min-width: 150px
+    min-width: 150px;
   }
 
   .sizing-table-order {
     max-width: 170px;
-    min-width: 170px
+    min-width: 170px;
   }
 
   .main-top-btn-add {
@@ -133,7 +128,7 @@
   .main-top-btn-add:hover {
     background-color: var(--bs-dark-text-emphasis) !important;
     color: #fff !important;
-    transition: ease .5s;
+    transition: ease 0.5s;
   }
 
   .container-main-mid-search {
@@ -147,7 +142,6 @@
       outline: none;
       border: none;
     }
-
   }
 
   .table-products {
@@ -169,7 +163,6 @@
     min-height: 155px;
   }
 }
-
 
 /* universal */
 section {
@@ -287,7 +280,6 @@ form.search-form {
   }
 }
 
-
 /* container */
 .container {
   .content {
@@ -313,7 +305,7 @@ form.search-form {
         color: #f4291a;
       }
     }
-}
+  }
 }
 
 /* cart */
@@ -348,7 +340,7 @@ form.search-form {
   width: 600px;
   height: 400px;
   border-radius: 10px;
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 
   form {
     display: flex;
@@ -407,10 +399,9 @@ form.search-form {
   max-width: 200px;
   min-width: 200px;
 }
-.button-trash
-{
+.button-trash {
   border: none;
-  background: none ;
+  background: none;
   outline: none;
 }
 .table-monthly-statistics {
@@ -445,7 +436,7 @@ form.search-form {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 76%;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .rating > input:checked ~ label,
@@ -453,8 +444,23 @@ form.search-form {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fbbc04' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
 }
 
-
 .rating > input:not(:checked) ~ label:hover,
 .rating > input:not(:checked) ~ label:hover ~ label {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23e0a803' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
+}
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
 }
