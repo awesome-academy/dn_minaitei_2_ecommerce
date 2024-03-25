@@ -10,7 +10,7 @@
           <% Category.all.each do |category| %>
             <li>
               <label class="dropdown-item">
-                <%= check_box_tag 'q[category_id_in][]', category.id, Array(@q.category_id_in).include?(category.id), class: "category-checkbox", onchange: "this.form.requestSubmit()" %>
+                <%= check_box_tag "q[category_id_in][]", category.id, Array(@q.category_id_in).include?(category.id), class: "category-checkbox", onchange: "this.form.requestSubmit()" %>
                 <%= category.name %>
               </label>
             </li>
