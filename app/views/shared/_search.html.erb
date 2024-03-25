@@ -1,6 +1,13 @@
-<form action="<%= products_path %>" method="get" class="search-form">
-  <div class="input-group">
-    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: t("input.search") %>
-    <button type="submit" class="btn"> <%= t("button.search") %> </button>
+<%= form_tag(products_path, method: :get, class: "search-form border border-2") do %>
+  <div class="row align-items-center">
+    <div class="col-md">
+      <div class="form-floating">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: t("input.search"), id: "floatingInputGrid" %>
+        <label for="floatingInputGrid"><%= t("input.search") %></label>
+      </div>
+    </div>
+    <div class="col-md-auto">
+      <button type="submit" class="btn rounded-2"><%= t("button.search") %></button>
+    </div>
   </div>
-</form>
+<% end %>
