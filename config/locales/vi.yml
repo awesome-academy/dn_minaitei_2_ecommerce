@@ -96,3 +96,28 @@ vi:
     account_name: "Đơn hàng của :"
     empty: "Không có sản phẩm nào được thêm vào đơn hàng"
   sure: "Bạn chắc chắn chứ?"
+  admin:
+    products:
+      title: "Sản phẩm"
+      price: "Giá"
+      quantity: "Số lượng"
+      empty: "Danh sách sản phẩm rỗng"
+      create:
+        success: "Tạo mới sản phẩm thành công!!!"
+        fail: "Tạo mới sản phẩm thất bại!!!"
+      update:
+        success: "Cập nhật sản phẩm thành công!!!"
+        fail: "Cập nhật sản phẩm thất bại!!!"
+      delete:
+        success: "Xóa sản phẩm thành công!!!"
+        fail: "Xóa sản phẩm thất bại!!!"
+      load:
+        error: "Không tìm thấy sản phẩm"
+      insert: "Thêm mới"
+      list_title: "Danh sách (%{num})"
+      name: "Tên"
+      remove_all: "Xóa tất cả"
+      ordinal_number: "STT"
+      producer: "Hãng"
+      outstanding: "Nổi bật"
+      action: "Hành động"
