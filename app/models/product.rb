@@ -19,6 +19,16 @@ class Product < ApplicationRecord
                               }
   scope :newest, -> { order(created_at: :desc) }
 
+  def self.product_outstanding
+    select("products.*, SUM(order_histories.quantity) AS total_quantity")
+      .joins(:order_histories)
+      .group("products.id")
+      .order("total_quantity DESC")
+      .joins("INNER JOIN orders ON orders.id = order_histories.order_id")
+      .where(orders: { status: "approved" })
+      .limit(10)
+  end
+
   validates :name, presence: true, length: { maximum: Settings.DIGIT_255 }
   validates :price, presence: true
   validates :description, presence: true, length: { maximum: Settings.DIGIT_1000 }
