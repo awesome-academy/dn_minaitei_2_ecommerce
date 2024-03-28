@@ -2,16 +2,16 @@
 
 class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :order_histories, dependent: :destroy
+  has_many :order_histories, dependent: :restrict_with_error
   belongs_to :category
   has_many :orders, through: :order_histories
   has_many :accounts, through: :comments
 
   has_one_attached :image do |attachable|
-    attachable.variant(:display, resize_to_limit: Settings.SIZE_400x400)
+    attachable.variant(:display, resize_to_limit: Settings.SIZE_224x224)
   end
 
-  scope :get_all_by_name_sort, -> { order(:name) }
+  scope :get_all_by_name_sort, -> { where(deleted_at: false).order(:name) }
   scope :search_by_name, -> (search_term) { where("name LIKE ?", "%#{search_term}%") if search_term.present? }
   scope :sort_by_category, -> (category_id) { where(category_id: category_id) if category_id.present? }
   scope :sort_by_range_price, lambda { |min_price, max_price|
@@ -20,8 +20,9 @@ class Product < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
 
   validates :name, presence: true, length: { maximum: Settings.DIGIT_255 }
-  validates :price, presence: true
+  validates :price, presence: true, numericality: true
   validates :description, presence: true, length: { maximum: Settings.DIGIT_1000 }
+  validates :quantity, presence: true, numericality: true, length: { maximum: Settings.DIGIT_1000 }
 
   def self.parse_price_range(price_range)
     return { min_price: nil, max_price: nil } if price_range.blank?
@@ -39,5 +40,13 @@ class Product < ApplicationRecord
     return if update(quantity: self.quantity + quantity)
 
     raise(ActiveRecord::Rollback)
+  end
+
+  def delete_soft
+    order_histories.each do |element|
+      return false if element.order.status_pending?
+    end
+
+    update_columns(deleted_at: true)
   end
 end
