@@ -42,6 +42,7 @@ en:
       title: "Filter"
       brand: "Brand"
       price: "Price"
+      select: "Select"
     insert: "NEW PRODUCT"
     list_title: "LIST (%{num})"
     name: "Name"

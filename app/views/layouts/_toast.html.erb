@@ -1,0 +1,16 @@
+<% if flash.present? %>
+  <% flash.each do |type, message| %>
+    <div class="mt-5"></div>
+    <div class="mt-5"></div>
+    <div class="toast-container top-0 end-0">
+      <div class="<%= bootstrap_class_for(type) %> mt-5" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            <%= message %>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

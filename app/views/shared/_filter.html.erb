@@ -1,15 +1,33 @@
-<%= form_tag products_path, method: :get do %>
+<%= form_with(model: @q, url: products_path, method: "get", remote: true, id: "product-filter-form") do |f| %>
   <div class="filter">
     <div class="mb-3">
-      <%= label_tag :category_id, t("products.filter.brand"), class: "form-label" %>
-      <%= select_tag :category_id, options_for_select(@categories), include_blank: true, class: "form-select" %>
+      <%= f.label :category_id_in, t("products.filter.brand") %>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= t("products.filter.select") %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="categoryDropdown" style="max-height: 200px; overflow-y: auto;">
+          <% Category.all.each do |category| %>
+            <li>
+              <label class="dropdown-item">
+                <%= check_box_tag 'q[category_id_in][]', category.id, Array(@q.category_id_in).include?(category.id), class: "category-checkbox", onchange: "this.form.requestSubmit()" %>
+                <%= category.name %>
+              </label>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-
     <div class="mb-3">
-      <%= label_tag :price_range, t("products.filter.price"), class: "form-label" %>
-      <%= select_tag :price_range, options_for_select(Settings.price_range), include_blank: true, class: "form-select" %>
+      <div id="selected-categories"></div>
     </div>
-
-    <%= submit_tag t("products.filter.title"), class: "btn btn-primary" %>
+    <div class="mb-3">
+      <div class="dropdown">
+        <%= f.label :price_between, t("products.filter.price") %>
+        <%= f.select :price_between, options_for_select(Settings.price_range, @q.price_between),
+                    { include_blank: t("products.filter.select") },
+                    { class: "form-control", onchange: "this.form.requestSubmit()" } %>
+      </div>
+    </div>
   </div>
 <% end %>

@@ -2,6 +2,7 @@
 
 class SessionsController < ApplicationController
   before_action :load_account, :authen_account, only: :create
+  before_action :logged_in_user, only: :destroy
 
   def new
     @account = Account.new

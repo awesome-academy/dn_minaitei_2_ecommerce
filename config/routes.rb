@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     root "products#index"
     resources :products, only: %i(index show) do
+      collection do
+        match "search" => "products#index", via: %i[get post], as: :search
+      end
       resources :comments
     end
     get "/login", to: "sessions#new"

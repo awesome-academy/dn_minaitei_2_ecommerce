@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  include Ransack
+
   QUANTITY = "quantity".freeze
 
   has_many :comments, dependent: :destroy
@@ -36,14 +38,14 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { maximum: Settings.DIGIT_1000 }
   validates :quantity, presence: true, numericality: true, length: { maximum: Settings.DIGIT_1000 }
 
-  def self.parse_price_range(price_range)
-    return { min_price: nil, max_price: nil } if price_range.blank?
-
-    min_price, max_price = price_range.split("-").map do |price|
-      Integer(price.strip, 10) if price.strip.match?(/^\d+$/)
+  class << self
+    def ransackable_associations(_auth_object = nil)
+      %w[category comments orders]
     end
 
-    { min_price: min_price, max_price: max_price }
+    def ransackable_attributes(_auth_object = nil)
+      %w[name price category_id]
+    end
   end
 
   delegate :name, to: :category, prefix: true

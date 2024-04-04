@@ -42,6 +42,7 @@ vi:
       title: "Lọc"
       brand: "Thương hiệu"
       price: "Giá"
+      select: "Chọn"
     insert: "SẢN PHẨM MỚI"
     list_title: "DANH SÁCH (%{num})"
     name: "Tên"
