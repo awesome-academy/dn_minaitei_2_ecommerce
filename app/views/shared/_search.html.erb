@@ -1,8 +1,8 @@
-<%= form_tag(products_path, method: :get, class: "search-form border border-2") do %>
+<%= form_with(model: @q, url: products_path, method: "get", local: true, class: "search-form border border-2") do |f| %>
   <div class="row align-items-center">
     <div class="col-md">
       <div class="form-floating">
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: t("input.search"), id: "floatingInputGrid" %>
+        <%= f.text_field :name_cont, class: "form-control", placeholder: t("input.search"), id: "floatingInputGrid" %>
         <label for="floatingInputGrid"><%= t("input.search") %></label>
       </div>
     </div>

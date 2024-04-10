@@ -17,7 +17,7 @@ module ApplicationHelper
     case flash_type
     when Constants::SUCCESS
       "toast align-items-center text-white bg-success border-0"
-    when Constants::DANGER && Constants::ERROR
+    when Constants::ERROR
       "toast align-items-center text-white bg-danger border-0"
     when Constants::ALERT
       "toast align-items-center text-white bg-primary border-0"

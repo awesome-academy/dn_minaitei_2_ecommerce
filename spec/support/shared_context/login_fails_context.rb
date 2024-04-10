@@ -7,7 +7,7 @@ RSpec.shared_examples("login fails") do |method, action|
     perform_action(method, action)
 
     expect(logged_in?).to(eq(false))
-    expect(flash[:danger]).to(eq(I18n.t("sessions.mess_pls_login")))
+    expect(flash[:error]).to(eq(I18n.t("sessions.mess_pls_login")))
     expect(response).to(redirect_to(login_path))
   end
 
@@ -17,7 +17,7 @@ RSpec.shared_examples("login fails") do |method, action|
     perform_action(method, action)
 
     expect(current_account.admin?).to(eq(false))
-    expect(flash[:danger]).to(eq(I18n.t("http_error.forbidden")))
+    expect(flash[:error]).to(eq(I18n.t("http_error.forbidden")))
     expect(response).to(redirect_to(login_path))
   end
 end

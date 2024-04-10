@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     return if logged_in?
 
-    flash[:danger] = t("sessions.mess_pls_login")
+    flash[:error] = t("sessions.mess_pls_login")
     redirect_to(login_path)
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  include Ransack
+
   QUANTITY = "quantity".freeze
 
   has_many :comments, dependent: :destroy
@@ -20,30 +22,26 @@ class Product < ApplicationRecord
                                 where("price >= ? AND price <= ?", min_price, max_price) if min_price.present? && max_price.present?
                               }
   scope :newest, -> { order(created_at: :desc) }
-  scope :product_outstanding, (lambda do
-                                 select("products.*, SUM(order_histories.quantity) AS total_quantity")
-                                 .joins(:order_histories)
-                                 .group("products.id")
-                                 .order("total_quantity DESC")
-                                 .joins("INNER JOIN orders ON orders.id = order_histories.order_id")
-                                 .where(orders: { status: Order.statuses[:approved] })
-                                 .where(is_deleted: false)
-                                 .limit(Settings.DIGIT_10)
-                               end)
+  scope :product_outstanding, lambda {
+    select("products.*, SUM(order_histories.quantity) AS total_quantity")
+      .joins(:order_histories)
+      .group("products.id")
+      .order("total_quantity DESC")
+      .joins("INNER JOIN orders ON orders.id = order_histories.order_id")
+      .where(orders: { status: Order.statuses[:approved] })
+      .where(is_deleted: false)
+      .limit(Settings.DIGIT_10)
+  }
 
   validates :name, presence: true, length: { maximum: Settings.DIGIT_255 }
   validates :price, presence: true, numericality: true
   validates :description, presence: true, length: { maximum: Settings.DIGIT_1000 }
   validates :quantity, presence: true, numericality: true, length: { maximum: Settings.DIGIT_1000 }
 
-  def self.parse_price_range(price_range)
-    return { min_price: nil, max_price: nil } if price_range.blank?
-
-    min_price, max_price = price_range.split("-").map do |price|
-      Integer(price.strip, 10) if price.strip.match?(/^\d+$/)
+  class << self
+    def ransackable_attributes(_auth_object = nil)
+      %w[name price category_id]
     end
-
-    { min_price: min_price, max_price: max_price }
   end
 
   delegate :name, to: :category, prefix: true
