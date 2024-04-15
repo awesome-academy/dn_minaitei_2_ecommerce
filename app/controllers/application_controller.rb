@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-  include SessionsHelper
+  include Devise::Controllers::Helpers
 
   before_action :set_locale
 
@@ -12,14 +12,5 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
-  end
-
-  private
-
-  def logged_in_user
-    return if logged_in?
-
-    flash[:error] = t("sessions.mess_pls_login")
-    redirect_to(login_path)
   end
 end

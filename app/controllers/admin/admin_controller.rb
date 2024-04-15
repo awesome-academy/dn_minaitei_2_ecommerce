@@ -3,12 +3,12 @@
 class Admin::AdminController < ApplicationController
   include OrdersHelper
 
-  before_action :logged_in_user, :author_admin
+  before_action :authenticate_account!, :author_admin
 
   def author_admin
     return if current_account.admin?
 
     flash[:error] = t("http_error.forbidden")
-    redirect_to(login_path)
+    redirect_to("/403.html")
   end
 end

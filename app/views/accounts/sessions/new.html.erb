@@ -1,0 +1,68 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <% if flash[:alert].present? %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <p class="lead fw-normal mb-0 me-3"><%= t("devise.sessions.new.sign_in_with") %></p>
+             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1 rounded-circle">
+              <i class="bi bi-facebook"></i>
+            </button>
+
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1 rounded-circle">
+              <i class="bi bi-google"></i>
+            </button>
+
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1 rounded-circle">
+              <i class="bi bi-linkedin"></i>
+            </button>
+          </div>
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0"><%= t("devise.sessions.new.or") %></p>
+          </div>
+
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, class: "form-control form-control-lg", placeholder: t("devise.sessions.new.email") %>
+          </div>
+
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autofocus: true, class: "form-control form-control-lg", placeholder: t("devise.sessions.new.password") %>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0 d-flex align-items-center">
+               <% if devise_mapping.rememberable? %>
+                <%= f.check_box :remember_me, class: "me-2" %>
+                <%= f.label :remember_me, t("devise.sessions.new.remember_me") %>
+              <% end %>
+            </div>
+            <a href="#!" class="text-body"><%= t("devise.sessions.new.forgot_password") %></a>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"><%= t("devise.sessions.new.login_button") %></button>
+            <p class="small fw-bold mt-2 pt-1 mb-0"><%= t("devise.sessions.new.register_prompt") %>
+              <%= link_to t("devise.sessions.new.register_link"), new_account_registration_path, class: "link-danger" %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

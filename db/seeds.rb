@@ -28,6 +28,7 @@ brands = %w[
   Razer
   Essential
 ]
+
 10.times do
   Account.create(
     name: Faker::Name.name,
@@ -35,9 +36,11 @@ brands = %w[
     role: Account.roles[:user],
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.phone_number,
-    password_digest: BCrypt::Password.create(Faker::Internet.password)
+    password: Faker::Internet.password(min_length: 6)
   )
 end
+
+Rails.logger.debug("Seeding accounts completed!")
 
 brands.each do |brand_name|
   category = Category.create(name: brand_name)
@@ -45,7 +48,7 @@ brands.each do |brand_name|
     product = Product.create(
       name: "#{brand_name} Phone #{n + 1}",
       description: "Description for #{brand_name} Phone #{n + 1}",
-      price: rand(5..200) * 1_000_000,
+      price: rand(5..200) * 100_000,
       quantity: rand(1..50),
       category_id: category.id,
       is_deleted: false
@@ -57,6 +60,7 @@ brands.each do |brand_name|
     end
   end
 end
+Rails.logger.debug("Seeding products completed!")
 
 50.times do
   order = Order.create(
@@ -72,10 +76,12 @@ end
       order_id: order.id,
       product_id: rand(1..Product.count),
       quantity: rand(1..5),
-      current_price: rand(5..200) * 1_000_000
+      current_price: rand(5..200) * 100_000
     )
   end
 end
+
+Rails.logger.debug("Seeding orders completed!")
 
 50.times do
   Comment.create(
@@ -86,4 +92,4 @@ end
   )
 end
 
-Rails.logger.debug("Categories, Products, Orders, Comments, and OrderHistories seeded successfully!")
+Rails.logger.debug("Seeding completed!")

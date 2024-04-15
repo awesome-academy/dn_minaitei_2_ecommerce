@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe(AccountsController, type: :controller) do
+RSpec.describe(Accounts::RegistrationsController, type: :controller) do
   describe "GET #new" do
     before { get :new }
 
@@ -44,10 +44,6 @@ RSpec.describe(AccountsController, type: :controller) do
 
       it "redirects to root path" do
         expect(response).to(redirect_to(root_path))
-      end
-
-      it "shows flash success message" do
-        expect(flash[:success]).to(eq(I18n.t("accounts.register_success")))
       end
     end
 

@@ -204,7 +204,7 @@ RSpec.describe(Admin::ProductsController, type: :controller) do
 
       context "delete fails" do
         let!(:product_delete) { create(:product, category_id: category.id) }
-        let!(:order_delete) { create(:order, account_id: current_account.id) }
+        let!(:order_delete) { create(:order, account_id: admin.id) }
         let!(:order_history_delete) { create(:order_history, order_id: order_delete.id, product_id: product_delete.id) }
 
         it "delete fails with" do
