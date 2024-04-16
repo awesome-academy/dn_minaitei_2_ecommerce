@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     get "/home", to: "products#index", as: :root
     devise_for :accounts, controllers: {
       sessions: "accounts/sessions",
-      registrations: "accounts/registrations"
+      registrations: "accounts/registrations",
+      confirmations: "accounts/confirmations"
     }
     resources :products, only: %i(index show) do
       resources :comments

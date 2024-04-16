@@ -16,7 +16,11 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Confirm your account"
+        greeting: "Hello %{email}!"
+        intro: "You have successfully registered for an account. To complete the registration process, please confirm your account by clicking the link below:"
+        confirm_link: "Confirm your account"
+        outro: "If you did not make this request, please disregard this email."
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:

@@ -63,5 +63,15 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Raise error when a before_action's only/except options reference missing actions
+  config.action_mailer.delivery_method = :test
   config.action_controller.raise_on_missing_callback_actions = true
+  config.action_mailer.default_url_options = { host: ENV["HOST"] }
+  config.action_mailer.smtp_settings = {
+    address: ENV["ADDRESS"],
+    port: 2525,
+    user_name: ENV["USER_NAME"],
+    password: ENV["USER_PASSWORD"],
+    authentication: "login",
+    enable_starttls_auto: true
+  }
 end

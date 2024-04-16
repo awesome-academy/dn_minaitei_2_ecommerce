@@ -6,12 +6,8 @@ class ProductsController < ApplicationController
 
   def index
     @q = Product.ransack(params[:q])
-    @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc).preload(:comments, image_attachment: :blob),
-                            items: Settings.PAGE_9
-                           )
-    @product_outstandings = Product.product_outstanding.preload(:comments, image_attachment: :blob).select do |product|
-      product.comments.present?
-    end
+    @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc).preload(:comments, image_attachment: :blob), items: Settings.PAGE_9)
+    @product_outstandings = Product.product_outstanding.preload(:comments, image_attachment: :blob).select { |product| product.comments.present? }
   end
 
   def show; end
